@@ -45,7 +45,8 @@ Solution for listening for Snippet updates via a Lambda webhook and pushing new 
   * Create a test function that will allow you to manually trigger the Lambda function from within the console. 
   * Build a request payload that looks identical to Optimizely's webhook requests.
   * Modify the following entities within your payload:
-  * body, httpMethod
+    * `"body": "{\"timestamp\":1000000000,\"project_id\":PROJECTID,\"data\":{\"cdn_url\":\"https://cdn.optimizely.com/js/PROJECTID.js\",\"origin_url\":\"https://optimizely.s3.amazonaws.com/js/0PROJECTID.js\",\"revision\":1},\"event\":\"project.snippet_updated\"}"`
+    * `"httpMethod": "POST"`
   * After running the Test trigger, you'll see a verbose output that shows both (a) http response & (b) output to CloudWatchLog
   
 ![success](https://github.com/optimizely-solutions/lambda-webhook-cloudfront/blob/master/img/success.png?raw=true)
@@ -54,7 +55,7 @@ Solution for listening for Snippet updates via a Lambda webhook and pushing new 
 
 * CloudWatch Logs - Monitor the CloudWatch Logs for Lambda function calls. The log group will automatically be generated for your function, as long as it has the proper IAM role. This is located in the [CloudWatch service](https://console.aws.amazon.com/cloudwatch/home)
 * Manually dispatch Webhook using cURL on CLI
-  * CURL command
+  * `curl --data "{\"timestamp\":1000000000,\"project_id\":PROJECTID,\"data\":{\"cdn_url\":\"https://cdn.optimizely.com/js/PROJECTID.js\",\"origin_url\":\"https://optimizely.s3.amazonaws.com/js/0PROJECTID.js\",\"revision\":1},\"event\":\"project.snippet_updated\"}" https://UNIQUE.execute-api.us-east-1.amazonaws.com/default/FUNCTIONNAME`
   * The payload should be the same as your Test payload in the Lambda console
   * You should see both 
     1. A log entry for this function call
