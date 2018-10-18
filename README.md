@@ -12,6 +12,9 @@ Solution for listening for Snippet updates via a Lambda webhook and pushing new 
 * Assign to a (new) IAM [role](https://console.aws.amazon.com/iam/home?#/roles) that has access to:
   * Amazon S3 (policy: *AmazonS3FullAccess*)
   * Amazon CloudWatch Logs (policy: *AWSLambdaBasicExecutionRole* or *CloudWatchLogsFullAccess*)
+
+![policies](https://github.com/optimizely-solutions/lambda-webhook-cloudfront/blob/master/img/policies.png?raw=true)
+
 * In the Lambda *Inline Code Editor*, replace with [this code](https://gist.github.com/cooperreid-optimizely/bad41f7a28e6c5a45c914404a5836a2c). Notes on code:
   * You must replace "YOUR-AWS-S3-BUCKET-NAME" with your S3 bucket name
   * The second argument in s3.Object is the S3 Key. This is the path that the file will be created in your bucket.
@@ -23,19 +26,29 @@ Solution for listening for Snippet updates via a Lambda webhook and pushing new 
 * Create a new Webhook
 * Supply the URL that was generated automatically when the API Gateway trigger was created
 * **The Lambda API endpoint URL** can be found by clicking the button on the resource tree and scrolling towards the bottom
+
+![gateway button](https://github.com/optimizely-solutions/lambda-webhook-cloudfront/blob/master/img/gateway.png?raw=true)
+
 * You'll see a module that shows the API endpoint URL:
+
+![tree](https://github.com/optimizely-solutions/lambda-webhook-cloudfront/blob/master/img/endpointurl.png?raw=true)
 
 ### Validating your setup
 
 * In the Lambda console, you'll see the following associations if IAM role is properly configured
   * Triggers (left side): API Gateway
   * Resources (right side): Amazon CloudWatch Logs, Amazon S3
+
+![tree](https://github.com/optimizely-solutions/lambda-webhook-cloudfront/blob/master/img/resourcetree.png?raw=true)
+
 * Test function within Lambda console
   * Create a test function that will allow you to manually trigger the Lambda function from within the console. 
   * Build a request payload that looks identical to Optimizely's webhook requests.
   * Modify the following entities within your payload:
   * body, httpMethod
   * After running the Test trigger, you'll see a verbose output that shows both (a) http response & (b) output to CloudWatchLog
+  
+![success](https://github.com/optimizely-solutions/lambda-webhook-cloudfront/blob/master/img/success.png?raw=true)
 
 ### Troubleshooting
 
