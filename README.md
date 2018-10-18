@@ -5,6 +5,7 @@ Solution for listening for Snippet updates via a Lambda webhook and pushing new 
 
 ### Create new Lambda function
 
+* Visit [Lambda console](https://console.aws.amazon.com/lambda/home)
 * Create from Blueprint
 * From list of Blueprints, choose *`microservice-http-endpoint`* (nodejs or python 3.6)
   * This will automatically set up an API gateway & set it as a trigger to your function
