@@ -1,6 +1,8 @@
-# lambda-webhook-cloudfront
+# Lambda Webhook for syncing Optimizely Snippet to S3
 
 Solution for listening for Snippet updates via a Lambda webhook and pushing the updated Optimizely snippet to an S3 bucket. This facilitates the ability to self-host the Optimizely snippet in your CloudFront instance. The workflow is as follows:
+
+> The sample code uses `Python`, but can easily be ported over any language supported by AWS Lambda
 
 * An Optimizely user makes an update which triggers a Snippet update
 * Optimizely webhook hits the Lambda function's API endpoint URL
