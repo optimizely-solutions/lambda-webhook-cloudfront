@@ -1,3 +1,9 @@
+## UPDATE: This is no longer the preferred way to self-host with AWS
+
+CloudFront supports custom origins, which will allow you to create a Distribution that points directly to cdn.optimizely.com. Guide coming soon.
+
+---
+
 # Lambda Webhook for syncing Optimizely Snippet to S3
 
 Solution for listening for Snippet updates via a Lambda webhook and pushing the updated Optimizely snippet to an S3 bucket. This facilitates the ability to self-host the Optimizely snippet in your CloudFront instance. The workflow is as follows:
